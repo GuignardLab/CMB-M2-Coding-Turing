@@ -50,7 +50,8 @@ class TuringInit:
                 ax = fig.add_subplot(111)
         else:
             print(
-                "Please compute `A` or `I` and store them in `self.A` and `self.I` before running that method"
+                "Please compute `A` or `I` and store them in `self.A` and `self.I`"
+                "before running that method"
             )
             return
 
