@@ -107,4 +107,4 @@ and open the notebooks directly from the `notebook` folder.
 
 ## 4. Classes
 
-[Let's open a notebook now](notebooks/1.Classes.ipynb)
+[Let's open a notebook now](notebooks/0.Functions.ipynb)
