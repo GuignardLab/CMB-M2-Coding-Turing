@@ -165,3 +165,4 @@ final_class.py
 *.DS_Store*
 .DS_Store
 *.BU.*
+.vscode/*
