@@ -56,9 +56,9 @@ class TuringInit:
             return
 
         if hasattr(self, "A"):
-            self.__plot_concentration__(self.A)
+            self.__plot_concentration__(self.A, ax)
         if hasattr(self, "I") and not 2 < len(self.I.shape):
-            self.__plot_concentration__(self.I)
+            self.__plot_concentration__(self.I, ax)
         fig.tight_layout()
 
     def __init__(self, **kwargs):
