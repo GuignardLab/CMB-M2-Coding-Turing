@@ -32,15 +32,15 @@ class TuringInit:
         return out
 
     @staticmethod
-    def __plot_concentration__(C, ax):
+    def __plot_concentration__(C, ax, step):
         if len(C.shape) == 1:
             ax.plot(C, "-")
         elif len(C.shape) == 2:
-            ax.imshow(C)
+            ax.imshow(C[::step, ...])
         elif len(C.shape) == 3:
-            ax.imshow(C[..., -1])
+            ax.imshow(C[-1, ...])
 
-    def plot_reactions(self, *, fig=None, ax=None):
+    def plot_reactions(self, *, fig=None, ax=None, step=None):
         if hasattr(self, "A") or hasattr(self, "I"):
             if fig is None and ax is None:
                 fig, ax = plt.subplots()
@@ -56,9 +56,9 @@ class TuringInit:
             return
 
         if hasattr(self, "A"):
-            self.__plot_concentration__(self.A, ax)
+            self.__plot_concentration__(self.A, ax, step=step)
         if hasattr(self, "I") and not 2 < len(self.I.shape):
-            self.__plot_concentration__(self.I, ax)
+            self.__plot_concentration__(self.I, ax, step=step)
         fig.tight_layout()
 
     def __init__(self, **kwargs):
