@@ -7,11 +7,39 @@ class TuringInit:
     tau = 0.1
     k = -0.005
     size = 100
-    dx = 2/size
-    dy = 2/size
     T = 9
     dt = 0.001
-    n = T/dt
+
+    @property
+    def n(self):
+        if not hasattr(self, "_n"):
+            self._n = int(self.T/self.dt)
+        return self._n
+
+    @property
+    def dx(self):
+        return self._dx
+
+    @dx.getter
+    def dx(self):
+        if not hasattr(self, "_dx"):
+            self._dx = 2/self.size
+        print()
+        return self._dx
+
+    @dx.setter
+    def dx(self, value):
+        self._dx = value
+
+    @property
+    def dy(self):
+        if not hasattr(self, "_dy"):
+            self._dy = 2/self.size
+        return self._dy
+    
+    @dy.setter
+    def dy(self, value):
+        self._dy = value
 
     def save3D(self, file_path, duration=.05, nb_steps=500):
         from imageio import mimsave
@@ -72,4 +100,11 @@ class TuringInit:
     def __init__(self, **kwargs):
         for arg_name, arg_val in kwargs.items():
             if hasattr(self, arg_name):
-                self.__dict__[arg_name] = arg_val
+                if arg_name == "dx":
+                    self.dx = arg_val
+                elif arg_name == "dy":
+                    self.dy = arg_val
+                elif arg_name == "n":
+                    print("`n` value ignore as it is directly linked to T and dt")
+                else:
+                    self.__dict__[arg_name] = arg_val
