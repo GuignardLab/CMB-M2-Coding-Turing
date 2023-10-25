@@ -13,6 +13,14 @@ class TuringInit:
     dt = 0.001
     n = 9000
 
+    def save3D(self, file_path, duration=.05, nb_steps=500):
+        from imageio import mimsave
+        min_ = self.A.min()
+        max_ = self.A.max()
+        normed = (self.A - min_)/(max_ - min_) * 255
+        step_size = max(1, normed.shape[0]//nb_steps)
+        mimsave(file_path, (normed[::step_size]).astype("uint8"), duration=duration)
+
     @staticmethod
     def __get_all_attributes__(cls):
         attributes = {}
