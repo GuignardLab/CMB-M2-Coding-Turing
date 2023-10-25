@@ -6,12 +6,12 @@ class TuringInit:
     mu_i = 0.005
     tau = 0.1
     k = -0.005
-    size = 200
-    dx = 0.01
-    dy = 0.01
+    size = 100
+    dx = 2/size
+    dy = 2/size
     T = 9
     dt = 0.001
-    n = 9000
+    n = T/dt
 
     def save3D(self, file_path, duration=.05, nb_steps=500):
         from imageio import mimsave
