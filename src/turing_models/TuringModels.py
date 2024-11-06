@@ -24,7 +24,6 @@ class TuringInit:
     def dx(self):
         if not hasattr(self, "_dx"):
             self._dx = 2/self.size
-        print()
         return self._dx
 
     @dx.setter
@@ -73,8 +72,12 @@ class TuringInit:
             ax.plot(C, "-")
         elif len(C.shape) == 2:
             ax.imshow(C[::step, ...])
+            ax.set_xticks([])
+            ax.set_yticks([])
         elif len(C.shape) == 3:
             ax.imshow(C[-1, ...])
+            ax.set_xticks([])
+            ax.set_yticks([])
 
     def plot_reactions(self, *, fig=None, ax=None, step=None):
         if hasattr(self, "A") or hasattr(self, "I"):
@@ -95,6 +98,7 @@ class TuringInit:
             self.__plot_concentration__(self.A, ax, step=step)
         if hasattr(self, "I") and not 2 < len(self.I.shape):
             self.__plot_concentration__(self.I, ax, step=step)
+        
         fig.tight_layout()
 
     def __init__(self, **kwargs):
